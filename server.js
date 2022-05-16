@@ -1,22 +1,26 @@
-//___________________
-//Dependencies
-//___________________
+// -------------------------------------------------
+// Dependencies
+// -------------------------------------------------
 const express = require('express');
 const methodOverride  = require('method-override');
 const mongoose = require ('mongoose');
 const app = express ();
 const db = mongoose.connection;
+
     //no variable needed below; just allows .env file to be pulled from directory
 require('dotenv').config()
-//___________________
-//Port
-//___________________
+
+
+// -------------------------------------------------
+// Port
+// -------------------------------------------------
 // Allow use of Heroku's port or your own local port, depending on the environment
 const PORT = process.env.PORT || 3003;
 
-//___________________
-//Database
-//___________________
+
+// -------------------------------------------------
+// Database
+// -------------------------------------------------
 // How to connect to the database either via heroku or locally
 const MONGODB_URI = process.env.MONGODB_URI;
 
@@ -32,9 +36,10 @@ db.on('error', (err) => console.log(err.message + ' is Mongod not running?'));
 db.on('connected', () => console.log('mongo connected: ', MONGODB_URI));
 db.on('disconnected', () => console.log('mongo disconnected'));
 
-//___________________
-//Middleware
-//___________________
+
+// -------------------------------------------------
+// Middleware
+// -------------------------------------------------
 
 //use public folder for static assets
 app.use(express.static('public'));
@@ -47,15 +52,102 @@ app.use(express.json());// returns middleware that only parses JSON - may or may
 app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
 
 
-//___________________
+// -------------------------------------------------
+// Models
+// -------------------------------------------------
+const Desks require("../models/desksSchema");
+const desksSeed = require("../models.desksSeed.js");
+
+
+// -------------------------------------------------
 // Routes
-//___________________
-//localhost:3000
-app.get('/' , (req, res) => {
-  res.send('Hello World!');
+// -------------------------------------------------
+
+// NEW View
+router.get("/new", (req, res) => {
+  res.render("new.ejs");
 });
 
-//___________________
-//Listener
-//___________________
+// Edit
+// GET /:id/edit
+app.get("/:id/edit", (req, res) => {
+  Desks.findById(req.params.id, (err, foundDesks) => {
+    res.render("edit.ejs", {
+      desks: foundDesks,
+    });
+  });
+});
+
+// Update
+// PUT /pokemon/:id
+app.put("/:id", (req, res) => {
+  Desks.findByIdAndUpdate(
+    req.params.id,
+    req.body,
+    { new: true },
+    (err, updatedDesks) => {
+      if (err) {
+        console.log(err.message);
+      } else {
+        res.redirect("/desks");
+      }
+    }
+  );
+});
+
+// DELETE parks/:id
+app.delete("/:id", (req, res) => {
+  Desks.findByIdAndRemove(req.params.id, (err, data) => {
+    if (err) {
+      console.log(err.message);
+    } else {
+      res.redirect("/desks");
+    }
+  });
+});
+
+// Show
+// GET parks/:id
+app.get("/:id", (req, res) => {
+  Desks.findById(req.params.id, (err, foundDesks) => {
+    res.render("show.ejs", {
+      desks: foundDesk,
+    });
+  });
+});
+
+// GET
+app.get("/", (req, res) => {
+  Desks.find({}, (err, allDesks) => {
+    res.render("index.ejs", {
+      desks: alldesks,
+    });
+  });
+});
+
+// Create
+// POST new park
+app.post("/", (req, res) => {
+  Desks.create(req.body, (err, createdPark) => {
+    res.redirect("/desks");
+  });
+});
+
+
+// -------------------------------------------------
+// Listener
+// -------------------------------------------------
 app.listen(PORT, () => console.log( 'Listening on port:', PORT));
+
+// -------------------------------------------------
+// Seed data add
+// -------------------------------------------------
+// Park.create(parkSeed, (err, data) => {
+//   if (err) console.log(err.message);
+//   console.log("Added provided parks data....");
+// });
+
+// -------------------------------------------------
+// Drop collection
+// -------------------------------------------------
+// Park.collection.drop();
