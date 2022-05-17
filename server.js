@@ -32,9 +32,9 @@ mongoose.connect(MONGODB_URI, () => {
 });
 
 // Error / success
-db.on('error', (err) => console.log(err.message + ' is Mongod not running?'));
-db.on('connected', () => console.log('mongo connected: ', MONGODB_URI));
-db.on('disconnected', () => console.log('mongo disconnected'));
+// db.on('error', (err) => console.log(err.message + ' is Mongod not running?'));
+// db.on('connected', () => console.log('mongo connected: ', MONGODB_URI));
+// db.on('disconnected', () => console.log('mongo disconnected'));
 
 
 // -------------------------------------------------
@@ -117,6 +117,7 @@ const desksSeed = require("./models/seed.js");
 // });
 
 // GET
+//Delete below after seed complete
 app.get("/", (req, res) => {
   res.render("index.ejs"
   );
@@ -125,7 +126,7 @@ app.get("/", (req, res) => {
 // app.get("/", (req, res) => {
 //   Desks.find({}, (err, allDesks) => {
 //     res.render("index.ejs", {
-//       desks: alldesks,
+//       desks: allDesks,
 //     });
 //   });
 // });
@@ -138,6 +139,14 @@ app.get("/", (req, res) => {
 //   });
 // });
 
+// Seed data add webpage
+app.get('/seed', (req, res)=>{
+  Desks.create(desksSeed,
+      (err, desksSeed)=>{
+        res.redirect('/');
+      }
+  )
+})
 
 // -------------------------------------------------
 // Listener
