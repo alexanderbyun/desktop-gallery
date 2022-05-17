@@ -45,7 +45,7 @@ db.on('disconnected', () => console.log('mongo disconnected'));
 app.use(express.static('public'));
 
 // populates req.body with parsed info from forms - if no data from forms will return an empty object {}
-app.use(express.urlencoded({ extended: false }));// extended: false - does not allow nested objects in query strings
+app.use(express.urlencoded({ extended: true }));// extended: false - does not allow nested objects in query strings
 app.use(express.json());// returns middleware that only parses JSON - may or may not need it depending on your project
 
 //use method override
@@ -55,8 +55,8 @@ app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
 // -------------------------------------------------
 // Models
 // -------------------------------------------------
-const Desks require("../models/desksSchema");
-const desksSeed = require("../models.desksSeed.js");
+const Desks = require("./models/schema.js");
+const desksSeed = require("./models/seed.js");
 
 
 // -------------------------------------------------
@@ -64,74 +64,79 @@ const desksSeed = require("../models.desksSeed.js");
 // -------------------------------------------------
 
 // NEW View
-router.get("/new", (req, res) => {
-  res.render("new.ejs");
-});
+// app.get("/new", (req, res) => {
+//   res.render("new.ejs");
+// });
 
 // Edit
 // GET /:id/edit
-app.get("/:id/edit", (req, res) => {
-  Desks.findById(req.params.id, (err, foundDesks) => {
-    res.render("edit.ejs", {
-      desks: foundDesks,
-    });
-  });
-});
+// app.get("/:id/edit", (req, res) => {
+//   Desks.findById(req.params.id, (err, foundDesks) => {
+//     res.render("edit.ejs", {
+//       desks: foundDesks,
+//     });
+//   });
+// });
 
 // Update
-// PUT /pokemon/:id
-app.put("/:id", (req, res) => {
-  Desks.findByIdAndUpdate(
-    req.params.id,
-    req.body,
-    { new: true },
-    (err, updatedDesks) => {
-      if (err) {
-        console.log(err.message);
-      } else {
-        res.redirect("/desks");
-      }
-    }
-  );
-});
+// PUT /:id
+// app.put("/:id", (req, res) => {
+//   Desks.findByIdAndUpdate(
+//     req.params.id,
+//     req.body,
+//     { new: true },
+//     (err, updatedDesks) => {
+//       if (err) {
+//         console.log(err.message);
+//       } else {
+//         res.redirect("/desks");
+//       }
+//     }
+//   );
+// });
 
-// DELETE parks/:id
-app.delete("/:id", (req, res) => {
-  Desks.findByIdAndRemove(req.params.id, (err, data) => {
-    if (err) {
-      console.log(err.message);
-    } else {
-      res.redirect("/desks");
-    }
-  });
-});
+// DELETE desks/:id
+// app.delete("/:id", (req, res) => {
+//   Desks.findByIdAndRemove(req.params.id, (err, data) => {
+//     if (err) {
+//       console.log(err.message);
+//     } else {
+//       res.redirect("/desks");
+//     }
+//   });
+// });
 
 // Show
-// GET parks/:id
-app.get("/:id", (req, res) => {
-  Desks.findById(req.params.id, (err, foundDesks) => {
-    res.render("show.ejs", {
-      desks: foundDesk,
-    });
-  });
-});
+// GET desks/:id
+// app.get("/:id", (req, res) => {
+//   Desks.findById(req.params.id, (err, foundDesks) => {
+//     res.render("show.ejs", {
+//       desks: foundDesk,
+//     });
+//   });
+// });
 
 // GET
 app.get("/", (req, res) => {
-  Desks.find({}, (err, allDesks) => {
-    res.render("index.ejs", {
-      desks: alldesks,
-    });
-  });
+  res.render("index.ejs"
+  );
 });
 
+// app.get("/", (req, res) => {
+//   Desks.find({}, (err, allDesks) => {
+//     res.render("index.ejs", {
+//       desks: alldesks,
+//     });
+//   });
+// });
+
 // Create
-// POST new park
-app.post("/", (req, res) => {
-  Desks.create(req.body, (err, createdPark) => {
-    res.redirect("/desks");
-  });
-});
+// POST new desk
+// app.post("/", (req, res) => {
+//   Desks.create(req.body, (err, createdPark) => {
+//     res.redirect("/desks");
+//   });
+// });
 
 
 // -------------------------------------------------
@@ -142,12 +147,12 @@ app.listen(PORT, () => console.log( 'Listening on port:', PORT));
 // -------------------------------------------------
 // Seed data add
 // -------------------------------------------------
-// Park.create(parkSeed, (err, data) => {
-//   if (err) console.log(err.message);
-//   console.log("Added provided parks data....");
-// });
+Desks.create(desksSeed, (err, data) => {
+  if (err) console.log(err.message);
+  console.log("Added provided desks data....");
+});
 
 // -------------------------------------------------
 // Drop collection
 // -------------------------------------------------
-// Park.collection.drop();
+// Desks.collection.drop();
