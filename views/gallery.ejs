@@ -8,9 +8,7 @@
     <title>Deskspace Gallery</title>
 </head>
 <body>
-    <nav>
-        <h1>Deskspace Gallery</h1>
-    </nav>
+    <%- include ("../partials/header.ejs") %>
     <div class="container">
         <button class = btn type="button" onclick="location.href='/new'">
             Add Desk Setup
@@ -28,8 +26,6 @@
             Add Desk Setup
         </button>
     </div>
-    <div class="footer">
-        <p>© 2022 | Alexander Byun</p>
-    </div>
+    <%- include ("../partials/footer.ejs") %>
 </body>
 </html>

@@ -8,6 +8,7 @@
     <title><%=desks.submitter%>'s Desk</title>
 </head>
 <body>
+    <%- include ("../partials/header.ejs") %>
     <div class="container">
         <ul style="list-style: none">
             <li>Submitter: <%=desks.submitter%></li>
@@ -34,5 +35,6 @@
             Back to Gallery
         </button>
     </div>
+    <%- include ("../partials/footer.ejs") %>
 </body>
 </html>
