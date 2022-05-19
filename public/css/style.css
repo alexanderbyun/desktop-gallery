@@ -16,6 +16,17 @@ body {
     font-family: Nunito Sans;
 }
 
+nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #bfd4ea;
+    color: #ffffff;
+    font-size: 20px;
+    padding: 0%;
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -29,4 +40,18 @@ body {
 a {
     color: inherit;
     text-decoration: none;
+}
+
+img {
+    box-shadow: 1px 1px 3px;
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #bfd4ea;
+    color: #ffffff;
+    padding: 0%;
 }
