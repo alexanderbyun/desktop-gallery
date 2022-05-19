@@ -2,13 +2,14 @@
 // Dependencies
 // ---------------------------------
 const express = require('express');
+const { path } = require('express/lib/application');
 const methodOverride  = require('method-override');
 const mongoose = require ('mongoose');
 const app = express ();
 const db = mongoose.connection;
 
     //no variable needed below; just allows .env file to be pulled from directory
-require('dotenv').config()
+require('dotenv').config();
 
 
 // ---------------------------------
@@ -130,9 +131,9 @@ app.get('/:id', (req, res) => {
   Desks.findById(req.params.id,(error,foundDesk) => {
     res.render('show.ejs',{
       desks: foundDesk,
-    })
-  })
-})
+    });
+  });
+});
 
 // Create
 app.post("/", (req, res) => {

@@ -10,18 +10,22 @@
 <body>
     <%- include ("../partials/header.ejs") %>
     <div class="container">
-        <h2>Do you want to improve your workflow?</h2>
-        <h3>Does your deskspace need a glo-up?</h3>
-        <h1>Say less.</h1>
+        <div class="index">
+            <h1>Does your deskspace need a glo-up?</h1>
+            <h2>Do you want to improve your workflow?</h2>
+            <h2>Need some inspiration?</h2>
+            <h1>Say less.</h1>
+        </div>
+        <br>
         <button 
-        class = gallery-btn 
+        class = btn 
         type="button" 
         onclick="location.href='/gallery'">
             See Gallery
         </button>
         <br>
         <button 
-        class = new-btn 
+        class = btn 
         type="button" 
         onclick="location.href='/new'">
             Add Desk Setup

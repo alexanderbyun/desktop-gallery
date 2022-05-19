@@ -10,17 +10,18 @@
 <body>
     <%- include ("../partials/header.ejs") %>
     <div class="container">
-        <ul style="list-style: none">
-            <li>Submitter: <%=desks.submitter%></li>
-            <li><img style="width: 70%" src="<%=desks.image%>"></li>
-            <br>
-            <li>Monitor: <%=desks.monitor%></li>
-            <li>Mount: <%=desks.mount%></li>
-            <li>Speakers: <%=desks.speakers%></li>
-            <li>Keyboard: <%=desks.keyboard%></li>
-            <li>Mouse: <%=desks.mouse%></li>
-        </ul>
-
+        <div class="show">
+            <ul class="show">
+                <li>Submitter: <%=desks.submitter%></li>
+                <li><img style="width: 75%" src="<%=desks.image%>"></li>
+                <br>
+                <li>Monitor: <%=desks.monitor%></li>
+                <li>Mount: <%=desks.mount%></li>
+                <li>Speakers: <%=desks.speakers%></li>
+                <li>Keyboard: <%=desks.keyboard%></li>
+                <li>Mouse: <%=desks.mouse%></li>
+            </ul>
+        </div>
         <button
         class="btn"
         type="button"
