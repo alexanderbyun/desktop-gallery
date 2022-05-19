@@ -4,9 +4,72 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css" />
     <title>New</title>
 </head>
 <body>
-    
+    <div class="container">
+        <h3>Add a new desk setup</h3>
+        <form
+        action="/" method="POST">
+            Submitter:
+            <input
+                placeholder="Submitter"
+                type="text"
+                name="submitter"
+                required />
+            <br>
+            Monitor:
+            <input
+                placeholder="Model name & size"
+                type="text"
+                name="monitor"
+                />
+            <br>
+            Mount:
+            <input
+                placeholder="Model name"
+                type="text"
+                name="mount"
+                />
+            <br>
+            Speakers:
+            <input
+                placeholder="Model name"
+                type="text"
+                name="speakers"
+                />
+            <br>
+            Keyboard:
+            <input
+                placeholder="Model name"
+                type="text"
+                name="keyboard"
+                />
+            <br>
+            Mouse:
+            <input
+                placeholder="Model name"
+                type="text"
+                name="mouse"
+                />
+            <br>
+            Image Link:
+            <input
+                placeholder="URL"
+                type="text"
+                name="image"
+                required />
+            <br>
+            <input type="submit" value="Add New Deskspace" />
+        </form>
+        <br><br>
+        <button 
+        class = gallery-btn 
+        type="button" 
+        onclick="location.href='/gallery'">
+            Back to Gallery
+        </button>
+    </div>
 </body>
 </html>

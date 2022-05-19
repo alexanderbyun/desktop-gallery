@@ -4,9 +4,69 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css" />
     <title>Edit</title>
 </head>
 <body>
-    
+    <div class="container">
+        <h3>Make changes</h3>
+        <form
+        action="/<%=desks._id%>?_method=PUT"
+        method="POST">
+            Submitter:
+                <input
+                type="text"
+                name="submitter"
+                value="<%=desks.submitter%>"
+                required />
+            <br>
+            Monitor:
+                <input
+                type="text"
+                name="monitor"
+                value="<%=desks.monitor%>" />
+            <br>
+            Mount:
+                <input
+                type="text"
+                name="mount"
+                value="<%=desks.mount%>" />
+            <br>
+            Speakers:
+                <input
+                type="text"
+                name="speakers"
+                value="<%=desks.speakers%>" />
+            <br>
+            Keyboard:
+                <input
+                type="text"
+                name="keyboard"
+                value="<%=desks.keyboard%>" />
+            <br>
+            Mouse:
+                <input
+                type="text"
+                name="mouse"
+                value="<%=desks.mouse%>" />
+            <br>
+            Image:
+                <input
+                type="text"
+                name="image"
+                value="<%=desks.image%>"
+                required />
+            <br>
+            <input
+            type="submit"
+            value="Submit Changes" />
+        </form>
+
+        <form action="/<%=desks._id%>?_method=DELETE" method="POST">
+            <input
+            type="submit"
+            value="DELETE" />
+        </form>
+    </div>
 </body>
 </html>

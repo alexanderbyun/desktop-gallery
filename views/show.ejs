@@ -4,9 +4,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Show</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <title><%=desks.submitter%>'s Desk</title>
 </head>
 <body>
-    
+    <div class="container">
+        <ul style="list-style: none">
+            <li>Submitter: <%=desks.submitter%></li>
+            <li><img style="width: 70%" src="<%=desks.image%>"></li>
+            <br>
+            <li>Monitor: <%=desks.monitor%></li>
+            <li>Mount: <%=desks.mount%></li>
+            <li>Speakers: <%=desks.speakers%></li>
+            <li>Keyboard: <%=desks.keyboard%></li>
+            <li>Mouse: <%=desks.mouse%></li>
+        </ul>
+
+        <button
+        class="edit-btn"
+        type="button"
+        onclick="location.href='/<%=desks._id%>/edit'">
+            Edit Info
+        </button>
+
+        <button 
+        class = gallery-btn 
+        type="button" 
+        onclick="location.href='/gallery'">
+            Back to Gallery
+        </button>
+    </div>
 </body>
 </html>
